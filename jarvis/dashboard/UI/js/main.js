@@ -8,7 +8,7 @@ var config = {
           //.then(response => {
             ///return response.json();
     //}
-
+    time_format: 12,
 }
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var days_abbr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -52,6 +52,18 @@ document.getElementById("day-one-timestamp").innerHTML = onet;
 document.getElementById("day-one-timestamp").innerHTML = twot;
 document.getElementById("day-one-timestamp").innerHTML = threet;
 document.getElementById("day-one-timestamp").innerHTML = fourt;
+
+function convert_time_format (time) { // edited from https://stackoverflow.com/questions/13898423/javascript-convert-24-hour-time-of-day-string-to-12-hour-time-with-am-pm-and-no 
+    // Check correct time format and split into components
+    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+  
+    if (time.length > 1) { // If time format correct
+      time = time.slice (1);  // Remove full string match value
+      time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join (''); // return adjusted time or original string
+}
+
 function startTime() {
     var today = new Date();
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -61,8 +73,12 @@ function startTime() {
     var day_number = today.getDate()
     document.getElementById("date-p1").innerHTML = day;
     document.getElementById("date-p2").innerHTML = day_number + ' ' + month;
-    document.getElementById("time").innerHTML = today.getHours() + ":" + formatMins(today.getMinutes());
-    document.getElementById("seconds").innerHTML = formatSeconds(today.getSeconds());
+    if (config.time_format == 12) {
+        document.getElementById("time").innerHTML = convert_time_format(today.getHours() + ":" + formatMins(today.getMinutes()));
+    }else {
+        document.getElementById("time").innerHTML = today.getHours() + ":" + formatMins(today.getMinutes());
+    }
+        document.getElementById("seconds").innerHTML = formatSeconds(today.getSeconds());
     var t = setTimeout(startTime, 1000);
 }
 function startWeather() {
