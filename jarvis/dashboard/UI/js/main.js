@@ -34,7 +34,7 @@ var threet = dthree.getTime();
 var fourt = dfour.getTime();
 // make usable in html
   // day full
-document.getElementById("day-one-f").innerHTML = one;
+document.getElementById("day-one-f").innerHTML = one; //i kow im trying to create it 
 document.getElementById("day-two-f").innerHTML = two;
 document.getElementById("day-three-f").innerHTML = three;
 document.getElementById("day-four-f").innerHTML = four;
@@ -64,7 +64,10 @@ function convert_time_format (time) { // edited from https://stackoverflow.com/q
     }
     return time.join (''); // return adjusted time or original string
 }
-
+function start() {
+    startTime();
+    getWeather();
+}
 function startTime() {
     var today = new Date();
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -82,11 +85,11 @@ function startTime() {
         document.getElementById("seconds").innerHTML = formatSeconds(today.getSeconds());
     var t = setTimeout(startTime, 1000);
 }
-function startWeather() {
+function startWeather(w) {
     if (config.offline_mode != true) {
-        var w = getWeather();
+        //var w = getWeather();
         weatherToIcon(w);
-        formatWeather(m);   // for testing ↓
+        formatWeather(w);   // for testing ↓
         var t = setTimeout(startWeather, 10000) //config.weather_refresh_rate);
     }
 }
@@ -101,7 +104,7 @@ function formatSeconds(s) { // adds a zero before the seconds if the number is o
 }
 
 function formatWeather(weather) {
-    var celcius = Math.round(parseFloat(d.main.temp)-273.15);
+    var celcius = Math.round(parseFloat(weather.main.temp)-273.15);
     var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32);
     let d =  new Date(weather.dt*1000);
     days = ["one", "two", "three", "four", "one", "two","three"];
@@ -111,7 +114,7 @@ function formatWeather(weather) {
     weatherToIcon(weather.weather[0].main.toUpperCase());
 }
 function weatherToIcon(w) {
-    let d =  new Date(w.dt*1000);
+    let d =  new Date(w.dt*1000); 
     days = ["one", "two", "three", "four", "one", "two","three"];
     var day = days[d.getDay()];
     if (w = "CLOUDS") {
@@ -130,12 +133,17 @@ function weatherToIcon(w) {
 function getWeather() {
     api_key = config.openweather_key;
     location1 = config.location;
-    // Adapted from https://bytemaster.io/fetch-weather-openweathermap-api-javascript
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + location1 + '&appid=' + api_key)  
-    .then(function(resp) { return resp.json() }) // Convert data to json
-    .catch(function() {
-      // catch any errors
-    });
+
+    //Try this
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+            //xmlHttp.responseText is response
+            startWeather(JSON.parse(this.responseText)); 
+        }
+    }
+    xmlHttp.open("GET", 'https://api.openweathermap.org/data/2.5/weather?q=' + location1 + '&appid=' + api_key, true); 
+    xmlHttp.send(null);
 
 }
 
@@ -144,11 +152,13 @@ function demoData() {
     var days = ["one", "two", "three", "four", "one", "two","three"];
     var i;
     var c = 24;
-    let  w= 6;
+    let  w = 6;
+    document.getElementById('temp-one').innerHTML = c;
+    console.log(document.getElementById('temp-one').value);
     for (i = 0; i < 4; i++) {
         var day = days[i];
-        document.getElementById('temp-' +day).innerHTML = c + '&deg;';
-        console.log('temp-' + day);
+        document.getElementById('temp-' +day).innerHTML = c;
+        console.log(document.getElementById('temp-' +day).value);
         //document.getElementById('wind-speed-' +day).innerHTML = w + 'mph';
     }
 }
