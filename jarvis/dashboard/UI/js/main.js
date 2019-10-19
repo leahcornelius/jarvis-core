@@ -59,7 +59,8 @@ function startTime() {
     var day = days[today.getDay()] 
     var month = months[today.getMonth()]
     var day_number = today.getDate()
-    document.getElementById("date").innerHTML = day + ' ' + day_number + ', ' + month;
+    document.getElementById("date-p1").innerHTML = day;
+    document.getElementById("date-p2").innerHTML = day_number + ' ' + month;
     document.getElementById("time").innerHTML = today.getHours() + ":" + formatMins(today.getMinutes());
     document.getElementById("seconds").innerHTML = formatSeconds(today.getSeconds());
     var t = setTimeout(startTime, 1000);
