@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JARVIS</title>
+        <title>DASHBOARD</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,8 +18,8 @@
                 </div>
 
                 <div class="col-third" style="text-align: right;">
-                    <h1 class='thin'> <span id="date-p1"></span> </h1>
-                    <h2 class='thin'> <span id="date-p2"></span></h2>
+                    <h1 class='thin'> <span id="datep1"></span> </h1>
+                    <h2 class='thin'> <span id="datep2"></span></h2>
                 </div>
             </div>
 
@@ -33,26 +33,26 @@
                     <div class="col-two-thirds">
                         <div class="cols">
                             <div class="col-fifth center">
+                                    <h2 class="thin" id="day-one"></h2>
                                     <h1 id="icon-one"></h1>
-                                <h3 id="day-one"></h3>
-                                <h4 id = "temp-one"></h4>
+                                <h3 id = "temp-one"></h3>
                             </div>
 
                             <div class="col-fifth center">
+                                    <h2 class="thin" id="day-two"></h2>
                                     <h1 id="icon-two"></h1>
-                                <h3 id="day-two"></h3>
                                 <h4 id = "temp-two"></h4>
                             </div>
 
                             <div class="col-fifth center">
+                                    <h2 class="thin" id="day-three"></h2>
                                 <h1 id="icon-three"></h1>
-                                <h3 id="day-three"></h3>
                                 <h4 id = "temp-three"></h4>
                             </div>
                             
                             <div class="col-fifth center">
+                                    <h2 class="thin" id="day-four"></h2>
                                     <h1 id="icon-four"></h1>
-                                <h3 id="day-four"></h3>
                                 <h4 id = "temp-four"></h4>
                             </div>
                         </div>
@@ -62,6 +62,7 @@
         </div>
 
     </body>
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     <script src="js/main.js"></script>
 </html> 
