@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JARVIS</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body onload="startTime()">
+        
+        <div class="main">
+            <div class="cols">
+                <div class="col-first">
+                    <h1 class="thin" style=font-size:125px id = "time"></h1><p class="thin"><span id="seconds"></span></p>
+                </div>
+
+                <div class="col-third">
+                </div>
+
+                <div class="col-third">
+                    <h2 class="center"> <span id="date"> </h2>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div class="cols">
+                    <div class="col-third">
+                        <h1 class="thin" id = "temp-one"></h1>
+                        <h2 class="thin" id = "wind-speed-one"></h2>
+                        <h3 id = "location"></h3>
+                    </div>
+                    <div class="col-two-thirds">
+                        <div class="cols">
+                            <div class="col-fifth center">
+                                    <h1 id="icon-one"></h1>
+                                <h3 id="day-one"></h3>
+                                <h4 id = "temp-one"></h4>
+                            </div>
+
+                            <div class="col-fifth center">
+                                    <h1 id="icon-two"></h1>
+                                <h3 id="day-two"></h3>
+                                <h4 id = "temp-two"></h4>
+                            </div>
+
+                            <div class="col-fifth center">
+                                <h1 id="icon-three"></h1>
+                                <h3 id="day-three"></h3>
+                                <h4 id = "temp-three"></h4>
+                            </div>
+                            
+                            <div class="col-fifth center">
+                                    <h1 id="icon-four"></h1>
+                                <h3 id="day-four"></h3>
+                                <h4 id = "temp-four"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="js/main.js"></script>
+</html> 
