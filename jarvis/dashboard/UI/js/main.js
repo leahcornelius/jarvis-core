@@ -9,6 +9,7 @@ var config = {
             ///return response.json();
     //}
     time_format: 12,
+    timezone: (60)* 1, // the number of mins + on UTC (eg 2 = UTC+1:00, 2.5 = UTC+2:30)
 }
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var days_abbr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
