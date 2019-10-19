@@ -34,10 +34,10 @@ var threet = dthree.getTime();
 var fourt = dfour.getTime();
 // make usable in html
   // day full
-document.getElementById("day-one-f").innerHTML = days[one];
-document.getElementById("day-two-f").innerHTML = days[two];
-document.getElementById("day-three-f").innerHTML = days[three];
-document.getElementById("day-four-f").innerHTML = days[four];
+document.getElementById("day-one-f").innerHTML = one;
+document.getElementById("day-two-f").innerHTML = two;
+document.getElementById("day-three-f").innerHTML = three;
+document.getElementById("day-four-f").innerHTML = four;
   // day abbr
 document.getElementById("day-one").innerHTML = days_abbr[one];
 document.getElementById("day-two").innerHTML = day_abbr[two];
