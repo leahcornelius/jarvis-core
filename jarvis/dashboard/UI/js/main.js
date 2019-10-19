@@ -129,9 +129,9 @@ function weatherToIcon(w) {
 }
 function getWeather() {
     api_key = config.openweather_key;
-    location = config.location;
+    location1 = config.location;
     // Adapted from https://bytemaster.io/fetch-weather-openweathermap-api-javascript
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + api_key)  
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + location1 + '&appid=' + api_key)  
     .then(function(resp) { return resp.json() }) // Convert data to json
     .catch(function() {
       // catch any errors
