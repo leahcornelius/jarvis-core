@@ -3,8 +3,7 @@ body{
     margin: 0px;
     font-family: 'Roboto', sans-serif;
 
-    background-image: url("../photos//00.jpg");
-   
+    background-image: url("../photos/00.jpg");
     background-size: cover;  
     background-repeat: no-repeat;
 }
