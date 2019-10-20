@@ -47,7 +47,7 @@ function processWeather(weather) {
     tempriture = ((tempriture - 32) * 5/9 );
     var wind_speed = weather.daily.data.windSpeed;
     document.getElementById('windspeedone').innerHTML =  Math.round(parseFloat(wind_speed)) + ' mph';
-    document.getElementById('tempone').innerHTML = Math.round(parseFloat(tempriture) + '&deg'; 
+    document.getElementById('tempone').innerHTML = Math.round(parseFloat(tempriture)) + '&deg'; 
     document.getElementById('iconone').innerHTML = weatherToIcon(''); // TODO
     var tempnow = Math.round(parseFloat(weather.currently.data.temperature));
     tempow = ((tempnow - 32) * 5/9 );
