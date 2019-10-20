@@ -10,14 +10,17 @@ var config = {
     //}
     time_format: 12,
     timezone: (60)* 1, // the number of mins + on UTC (eg 2 = UTC+1:00, 2.5 = UTC+2:30)
+    country_code: 'UK',
+    testing: false, 
+    postcode: '*** ***',
 }
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var days_abbr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 var first_il =true;
-document.getElementById('icon-one').innerHTML = '<ion-icon name="ios-help">';
-document.getElementById('icon-two').innerHTML = '<ion-icon name="ios-help">';
-document.getElementById('icon-three').innerHTML = '<ion-icon name="ios-help">';
-document.getElementById('icon-four').innerHTML = '<ion-icon name="ios-help">';
+document.getElementById('iconone').innerHTML = '<ion-icon name="ios-help">';
+document.getElementById('icontwo').innerHTML = '<ion-icon name="ios-help">';
+document.getElementById('iconthree').innerHTML = '<ion-icon name="ios-help">';
+document.getElementById('iconfourr').innerHTML = '<ion-icon name="ios-help">';
 var d = new Date();
 // day number
 var onen = d.getDay();
@@ -65,7 +68,7 @@ document.getElementById("day-four").innerHTML = days_abbr[fourn];
 //document.getElementById("day-one-timestamp").innerHTML = twot;
 //document.getElementById("day-one-timestamp").innerHTML = threet;
 //document.getElementById("day-one-timestamp").innerHTML = fourt;
-
+document.getElementById("location").innerHTML = config.location + ', ' + config.country_code;
 function sleep(milliseconds) {
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {
@@ -88,6 +91,9 @@ function convert_time_format (time) { // edited from https://stackoverflow.com/q
 function start() {
     startTime();
     getWeather();
+    if (config.testing == true) {
+        demoData();
+    }
 }
 function startTime() {
     var today = new Date();
@@ -110,14 +116,10 @@ function startTime() {
     var t = setTimeout(startTime, 500);
 }
 function startWeather(w) {
+    console.log(w);
     if (config.offline_mode != true) {
-        weatherToIcon(w);
         formatWeather(w);   // for testing ↓
-        var t = setTimeout(startWeather, 10000) //config.weather_refresh_rate);
-    }
-
-    function newFunction() {
-        return getWeather();
+        var t = setTimeout(startWeather, 10000, w) //config.weather_refresh_rate);
     }
 }
 function formatMins(min) { // adds a zero before mins if the number is only one (eg 1 becomes 01)
@@ -135,37 +137,46 @@ function formatSeconds(s) { // adds a zero before the seconds if the number is o
 }
 
 function formatWeather(weather) {
-    var celcius = Math.round(parseFloat(weather.main.temp)-273.15);
-    console.log(celcius);
     console.log(weather);
-    var fahrenheit = Math.round(((parseFloat(weather.main.temp)-273.15)*1.8)+32);
-    days = ["one", "two", "three", "four"];
-    var wind_speed = weather.wind.speed;
-    console.log(wind_speed);
-    i = 0;
-    for (i < 4; i++;) {
-        document.getElementById('temp-' +days[i]).innerHTML = celcius + '&deg;';
-        document.getElementById('wind-speed-'+days[i]).innerHTML = wind_speed + 'mph';
-
-    }
-    //document.getElementById('temp-one').innerHTML = celcius + '&deg;';
-    weatherToIcon(weather.weather[0].main.toUpperCase());
+    var wind_speed = weather.list[0].wind.speed;
+    document.getElementById('windspeedone').innerHTML =  Math.round(parseFloat(wind_speed)) + ' mph';
+    document.getElementById('tempone').innerHTML = Math.round(parseFloat(weather.list[0].main.temp)-273.15) + '&deg';
+    document.getElementById('temptwo').innerHTML = Math.round(parseFloat(weather.list[7].main.temp)-273.15)+ '&deg';
+    document.getElementById('tempthree').innerHTML = Math.round(parseFloat(weather.list[14].main.temp)-273.15)+ '&deg';
+    document.getElementById('tempfour').innerHTML = Math.round(parseFloat(weather.list[21].main.temp)-273.15)+ '&deg'; 
+    document.getElementById('iconone').innerHTML = weatherToIcon(weather.list[0].weather[0].main);
+    document.getElementById('icontwo').innerHTML = weatherToIcon(weather.list[7].weather[0].main);
+    document.getElementById('iconthree').innerHTML = weatherToIcon(weather.list[14].weather[0].main);
+    document.getElementById('iconfourr').innerHTML = weatherToIcon(weather.list[21].weather[0].main);
+    console.log(weather.list[21].weather[0].main);
+    //document.getElementById('iconnow').innerHTML = weatherToIcon(weather.list[0].weather[0].main);
+    document.getElementById('tempnow').innerHTML = Math.round(parseFloat(weather.list[0].main.temp)-273.15)+ '&deg';
 }
 function weatherToIcon(w) {
-    let d =  new Date(w.dt*1000); 
-    days = ["one", "two", "three", "four", "one", "two","three"];
-    var day = days[d.getDay()];
-    var type = w.weather[0].main;
-    if (type == "Clouds") {
-        document.getElementById('icon-'+day).innerHTML = '<ion-icon name="ios-cloud">';
-    }else if (type == "RAIN") {
-        document.getElementById('icon-'+day).innerHTML = '<ion-icon name="ios-rainy">';
-    } else if (type == "THUNDERSTORM") {
-        document.getElementById('icon-'+day).innerHTML = '<ion-icon name="ios-thunderstorm">';
-    } else if (type =="SUNNY") {
-        document.getElementById('icon-'+day).innerHTML = '<ion-icon name="ios-sunny">';
-    } else {
-        document.getElementById('icon-'+day).innerHTML = '<ion-icon name="ios-help">'
+    var days = ["uhoh","one", "two", "three", "fourr", "uhoh"];
+    console.log(w);
+    var type = w;
+    for (i = 1; i < 5; i++) {
+        var day = days[i];
+        if (type == "Clouds") {
+            document.getElementById('icon'+day).innerHTML = '<ion-icon name="ios-cloud">';
+            console.log(day + ':' +type);
+        }else if (type == "Rain") {
+            document.getElementById('icon'+day).innerHTML = '<ion-icon name="ios-rainy">';
+            console.log(day + ':' +type);
+        } else if (type == "Thunderstorm") {
+            document.getElementById('icon'+day).innerHTML = '<ion-icon name="ios-thunderstorm">';
+            console.log(day + ':' +type);
+        } else if (type =="Sunny") {
+            document.getElementById('icon'+day).innerHTML = '<ion-icon name="ios-partly-sunny">';
+            console.log(day + ':' +type);
+        } else if (type == "Clear") {
+            document.getElementById('icon'+day).innerHTML = '<ion-icon name="ios-sunny">';
+            console.log(day + ':' +type);
+        } else {
+            document.getElementById('icon'+day).innerHTML = '<ion-icon name="ios-help">';
+            console.log(day + ':' +type);
+        }
     }
 
 }
@@ -179,23 +190,28 @@ function getWeather() {
             startWeather(JSON.parse(this.responseText)); 
         }
     }
-    xmlHttp.open("GET", 'https://api.openweathermap.org/data/2.5/weather?q=' + location1 + '&appid=' + api_key, true); 
+    xmlHttp.open("GET", 'https://api.openweathermap.org/data/2.5/forecast?q=' + location1 + '&appid=' + api_key, true); 
     xmlHttp.send(null);
 
 }
 
 // for testing
 function demoData() {
-    var days = ["one", "two", "three", "four", "one", "two","three"];
+    var days = ["uhoh","one", "two", "three", "four", "uhoh"];
+    var weathers = ["Clouds", "Rain", "Thunderstorm", "Sunny"];
     var i;
     var c = 24;
     let  w = 6;
-    document.getElementById('temp-one').innerHTML = c;
-    console.log(document.getElementById('temp-one').value);
-    for (i = 0; i < 4; i++) {
+   
+    for (i = 1; i < 5; i++) {
         var day = days[i];
-        document.getElementById('temp-' +day).innerHTML = c;
-        console.log(document.getElementById('temp-' +day).value);
-        //document.getElementById('wind-speed-' +day).innerHTML = w + 'mph';
+        c = Math.ceil(Math.random() * 10);
+        w = Math.ceil(Math.random() * 7);
+        console.log(i);
+        console.log(days[i]);
+        document.getElementById('temp' +day).innerHTML = c;
+        document.getElementById('windspeed' +days[1]).innerHTML = w + ' mph';
+        document.getElementById('icon' +day).innerHTML = weatherToIcon(weathers[i]);
     }
+    document.getElementById('tempnow').innerHTML = document.getElementById('tempone').innerHTML;
 }
