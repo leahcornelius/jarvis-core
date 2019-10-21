@@ -5,6 +5,7 @@ body{
 
     background-image: url("../photos/03.jpg");
     height: 100vh;
+    overflow-y: hidden;
     background-size: cover;  
     background-repeat: no-repeat;
 }
