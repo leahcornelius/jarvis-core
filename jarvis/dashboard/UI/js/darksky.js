@@ -9,6 +9,10 @@ var oneTimestamp = getTimestamp(0);
 var twoTimestamp = getTimestamp(1);
 var threeTimestamp = getTimestamp(2);
 var fourTimestamp = getTimestamp(3);
+
+var timestamps = {dayOne:getTimestamp(0),dayTwo:getTimestamp(1),dayThree:getTimestamp(2),dayFour:getTimestamp(3)};
+timestamps['dayOne']; //day one
+
 currentCoords[0] = localStorage.getItem("lat");
 currentCoords[1] = localStorage.getItem("long");
 function setLocation(lat, long) {
@@ -34,22 +38,25 @@ function getDarkskyWeather(time) {
     var proxy = 'https://cors-anywhere.herokuapp.com/';
     var url = 'https://api.darksky.net/forecast/'+key+'/'+currentCoords[0]+','+currentCoords[1]+','+time+'?exclude=minutely,hourly,flags,alerts';
     var proxy = 'https://cors-anywhere.herokuapp.com/';
-
+    day = '';
     $.ajax({
         url:proxy + url,
-        success:function(data) { processWeather(data);}
+        success:function(data) { processWeather(data,day);}
     });
 }
 
-function processWeather(weather) {
-    console.log(weather);
+function processWeather(weather,day) {
     var tempriture = Math.round(parseFloat(((weather.daily.data.temperatureHigh -weather.daily.data.temperatureLow)/2)));
     tempriture = ((tempriture - 32) * 5/9 );
     var wind_speed = weather.daily.data.windSpeed;
-    document.getElementById('windspeedone').innerHTML =  Math.round(parseFloat(wind_speed)) + ' mph';
-    document.getElementById('tempone').innerHTML = Math.round(parseFloat(tempriture)) + '&deg'; 
-    document.getElementById('iconone').innerHTML = weatherToIcon(''); // TODO
+    document.getElementById('windspeed'+day).innerHTML =  Math.round(parseFloat(wind_speed)) + ' mph';
+    document.getElementById('temp'+day).innerHTML = Math.round(parseFloat(tempriture)) + '&deg'; 
+    document.getElementById('icon'+day).innerHTML = darkskyWeatherToIcon(weather.daily.data.icon); 
     var tempnow = Math.round(parseFloat(weather.currently.data.temperature));
     tempow = ((tempnow - 32) * 5/9 );
-    document.getElementById('tempnow').innerHTML = Math.round(parseFloat(weather.currently.data.temperature))+ '&deg';
+    document.getElementById('tempnow').innerHTML = tempnow+  '&deg';
 }    
+
+function darkskyWeatherToIcon(type) {
+
+}
