@@ -4,6 +4,7 @@ body{
     font-family: 'Roboto', sans-serif;
 
     background-image: url("../photos/00.jpg");
+    height: 100vh;
     background-size: cover;  
     background-repeat: no-repeat;
 }
