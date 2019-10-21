@@ -53,6 +53,15 @@ h1{
 h2{
     font-size: 32px;
 }
+
+h3{
+    font-size: 24px;
+}
+
+span.low{
+    font-size: 20px;
+}
+
 p{
     display:inline;
     font-size: 53px;

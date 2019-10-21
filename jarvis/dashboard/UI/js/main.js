@@ -14,6 +14,7 @@ var config = {
     testing: false, 
     postcode: '*** ***',
 }
+document.getElementById('tempOneLow').innerHTML = 23 + '&deg;';
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var days_abbr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 var first_il =true;
