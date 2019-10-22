@@ -13,6 +13,7 @@ var config = {
     country_code: 'UK',
     testing: false, 
     postcode: '*** ***',
+    photo_change_interval: 120000,
 }
 
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -66,7 +67,13 @@ document.getElementById("day-four").innerHTML = days_abbr[fourn];
 //document.getElementById("day-one-timestamp").innerHTML = twot;
 //document.getElementById("day-one-timestamp").innerHTML = threet;
 //document.getElementById("day-one-timestamp").innerHTML = fourt;
-
+function selectPhoto() {
+    var photo = Math.floor(Math.random() * 10);
+    if (photo < 10) { photo = '0' + photo;}
+    var photo_url = 'photos/' + photo + '.jpg';
+    document.body.style.backgroundImage = "url("+photo_url+")";
+    var t = setTimeout(selectPhoto,photo_change_interval); // select a new photo every 2 mins
+}
 function convert_time_format (time) { // edited from https://stackoverflow.com/questions/13898423/javascript-convert-24-hour-time-of-day-string-to-12-hour-time-with-am-pm-and-no 
     // Check correct time format and split into components
     time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
@@ -80,6 +87,7 @@ function convert_time_format (time) { // edited from https://stackoverflow.com/q
 function start() {
     startTime();
     darkskyInit();
+    selectPhoto();
     //getWeather();
     //if (config.testing == true) {
     //    demoData();
