@@ -70,11 +70,11 @@ function processWeather(weather,day) {
             var sunrise = new Date(weather.daily.data[0].sunriseTime * 1000);
             sunrise = sunrise.toLocaleString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true })
             document.getElementById('suntime').innerHTML = sunrise;
-            document.getElementById('sunicon').setAttribute('data-icon','')
+            document.getElementById('sunicon').setAttribute('data-icon','A')
         } else { // not been sunset yet, display the time of that!
             sunset = sunset.toLocaleString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true })
             document.getElementById('suntime').innerHTML = sunset;
-            document.getElementById('sunicon').setAttribute('data-icon','')
+            //document.getElementById('sunicon').setAttribute('data-icon','')
         }
     }
     document.getElementById('temp'+day).innerHTML = Math.round(temperatureHigh) + '&deg';
@@ -93,7 +93,7 @@ function darkskyWeatherToIcon(type,day) {
     if(type=='rain') {document.getElementById('icon'+day).setAttribute('data-icon',"R");}
     if(type=='snow') {document.getElementById('icon'+day).setAttribute('data-icon',"W");}
     if(type=='sleet') {document.getElementById('icon'+day).setAttribute('data-icon',"X");}
-    if(type=='wind') {document.getElementById('icon'+day).setAttribute('data-icon',"F");}
+    if(type=='wind') {document.getElementById('icon'+day).setAttribute('data-icon',"S");}
     if(type=='fog') {document.getElementById('icon'+day).setAttribute('data-icon',"L");}
     if(type=='partly-cloudy-day') {document.getElementById('icon'+day).setAttribute('data-icon',"H");}
     if(type=='partly-cloudy-night') {document.getElementById('icon'+day).setAttribute('data-icon',"I");}
