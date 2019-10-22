@@ -14,14 +14,10 @@ var config = {
     testing: false, 
     postcode: '*** ***',
 }
-document.getElementById('tempOneLow').innerHTML = 23 + '&deg;';
+
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var days_abbr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 var first_il =true;
-document.getElementById('iconone').innerHTML = '<ion-icon name="ios-help">';
-document.getElementById('icontwo').innerHTML = '<ion-icon name="ios-help">';
-document.getElementById('iconthree').innerHTML = '<ion-icon name="ios-help">';
-document.getElementById('iconfourr').innerHTML = '<ion-icon name="ios-help">';
 var d = new Date();
 // day number
 var onen = d.getDay();
@@ -59,6 +55,7 @@ document.getElementById("day-one").innerHTML = 'TODAY';
 document.getElementById("day-two").innerHTML = days_abbr[twon];
 document.getElementById("day-three").innerHTML = days_abbr[threen];
 document.getElementById("day-four").innerHTML = days_abbr[fourn];
+
   // date
 //document.getElementById("day-one-date").innerHTML = d;
 //document.getElementById("day-two-date").innerHTML = dtwo;
@@ -69,15 +66,6 @@ document.getElementById("day-four").innerHTML = days_abbr[fourn];
 //document.getElementById("day-one-timestamp").innerHTML = twot;
 //document.getElementById("day-one-timestamp").innerHTML = threet;
 //document.getElementById("day-one-timestamp").innerHTML = fourt;
-document.getElementById("location").innerHTML = config.location + ', ' + config.country_code;
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
-    }
-}
 
 function convert_time_format (time) { // edited from https://stackoverflow.com/questions/13898423/javascript-convert-24-hour-time-of-day-string-to-12-hour-time-with-am-pm-and-no 
     // Check correct time format and split into components
@@ -91,10 +79,11 @@ function convert_time_format (time) { // edited from https://stackoverflow.com/q
 }
 function start() {
     startTime();
-    getWeather();
-    if (config.testing == true) {
-        demoData();
-    }
+    darkskyInit();
+    //getWeather();
+    //if (config.testing == true) {
+    //    demoData();
+   // }
 }
 function startTime() {
     var today = new Date();
@@ -145,22 +134,22 @@ function formatWeather(weather) {
     document.getElementById('temptwo').innerHTML = Math.round(parseFloat(weather.list[7].main.temp)-273.15)+ '&deg';
     document.getElementById('tempthree').innerHTML = Math.round(parseFloat(weather.list[14].main.temp)-273.15)+ '&deg';
     document.getElementById('tempfour').innerHTML = Math.round(parseFloat(weather.list[21].main.temp)-273.15)+ '&deg'; 
-    document.getElementById('iconone').innerHTML = weatherToIcon(weather.list[0].weather[0].main);
-    document.getElementById('icontwo').innerHTML = weatherToIcon(weather.list[7].weather[0].main);
-    document.getElementById('iconthree').innerHTML = weatherToIcon(weather.list[14].weather[0].main);
-    document.getElementById('iconfourr').innerHTML = weatherToIcon(weather.list[21].weather[0].main);
+    weatherToIcon(weather.list[0].weather[0].main);
+     weatherToIcon(weather.list[7].weather[0].main);
+    weatherToIcon(weather.list[14].weather[0].main);
+    weatherToIcon(weather.list[21].weather[0].main);
     console.log(weather.list[21].weather[0].main);
     //document.getElementById('iconnow').innerHTML = weatherToIcon(weather.list[0].weather[0].main);
     document.getElementById('tempnow').innerHTML = Math.round(parseFloat(weather.list[0].main.temp)-273.15)+ '&deg';
 }
 function weatherToIcon(w) {
-    var days = ["uhoh","one", "two", "three", "fourr", "uhoh"];
+    var days = ["uhoh","one", "two", "three", "four", "uhoh"];
     console.log(w);
     var type = w;
     for (i = 1; i < 5; i++) {
         var day = days[i];
         if (type == "Clouds") {
-            document.getElementById('icon'+day).innerHTML = '<ion-icon name="ios-cloud">';
+            document.getElementById('icon'+day).setAttribute('data-icon',"N");
             console.log(day + ':' +type);
         }else if (type == "Rain") {
             document.getElementById('icon'+day).innerHTML = '<ion-icon name="ios-rainy">';
@@ -195,6 +184,7 @@ function getWeather() {
     xmlHttp.send(null);
 
 }
+// REMOVE
 
 // for testing
 function demoData() {
