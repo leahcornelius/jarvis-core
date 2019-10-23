@@ -85,7 +85,6 @@ function convert_time_format (time) { // edited from https://stackoverflow.com/q
     return time.join (''); // return adjusted time or original string
 }
 function start() {
-    
     startTime();
     darkskyInit();
     selectPhoto();
