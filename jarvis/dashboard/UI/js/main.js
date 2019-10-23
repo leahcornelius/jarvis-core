@@ -72,7 +72,7 @@ function selectPhoto() {
     if (photo < 10) { photo = '0' + photo;}
     var photo_url = 'photos/' + photo + '.jpg';
     document.body.style.backgroundImage = "url("+photo_url+")";
-    var t = setTimeout(selectPhoto,photo_change_interval); // select a new photo every 2 mins
+    var t = setTimeout(selectPhoto,config.photo_change_interval); // select a new photo every 2 mins
 }
 function convert_time_format (time) { // edited from https://stackoverflow.com/questions/13898423/javascript-convert-24-hour-time-of-day-string-to-12-hour-time-with-am-pm-and-no 
     // Check correct time format and split into components
