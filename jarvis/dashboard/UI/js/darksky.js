@@ -66,7 +66,7 @@ function processWeather(weather,day) {
         var d = new Date();
         var currentTime = d.getMilliseconds();
         var sunset = new Date(weather.daily.data[0].sunsetTime * 1000);
-        if(sunset.getMilliseconds() < currentTime) { // already been sunset, display sunrise time
+        if(weather.daily.data[0].sunsetTime*1000 - currentTime < 0) { // already been sunset, display sunrise time
             var sunrise = new Date(weather.daily.data[0].sunriseTime * 1000);
             sunrise = sunrise.toLocaleString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true })
             document.getElementById('suntime').innerHTML = sunrise;
@@ -104,6 +104,10 @@ function darkskyWeatherToIcon(type,day) {
     if(type=='') {document.getElementById('icon'+day).setAttribute('data-icon',")");}
 }
 function darkskyInit() {
+    darkskyWeatherToIcon('','one');
+    darkskyWeatherToIcon('','two');
+    darkskyWeatherToIcon('','three');
+    darkskyWeatherToIcon('','four');
     getDarkskyWeather(1);
     getDarkskyWeather(2);
     getDarkskyWeather(3);
