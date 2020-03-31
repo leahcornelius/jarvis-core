@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "dashboard",
+    "jarvis_config",
+    "jarvis_speech",
+    "jarvis_skills",
+    "jarvis_ui",
+    "bin/jarvis_main"
+]

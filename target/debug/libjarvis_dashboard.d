@@ -1,0 +1,1 @@
+/home/lcornelius/jarvis-core/target/debug/libjarvis_dashboard.rlib: /home/lcornelius/jarvis-core/dashboard/lib.rs /home/lcornelius/jarvis-core/jarvis_config/src/lib.rs /home/lcornelius/jarvis-core/jarvis_speech/src/lib.rs /home/lcornelius/jarvis-core/jarvis_ui/src/lib.rs

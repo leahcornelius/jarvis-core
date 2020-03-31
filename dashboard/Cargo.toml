@@ -1,0 +1,19 @@
+[package]
+name = "jarvis_dashboard"
+version = "0.1.0"
+authors = ["Leo Cornelius <leocornelius@gmail.com>"]
+description = "This is the skill that is auto loaded on devices with screens."
+keywords = ["jarvis", "dashboard", "UI", "jarvis_ui"]
+license = "MPL-2.0"
+homepage = "https://jarvis.github.io"
+repository = "https://github.com/leocornelius/jarvis-core"
+readme = "README.md"
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+jarvis_ui = { path = "../jarvis_ui" }
+jarvis_config = { path = "../jarvis_config" }
+jarvis_speech = { path = "../jarvis_speech" }
+log = "0.4"

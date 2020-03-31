@@ -1,0 +1,12 @@
+[package]
+name = "jarvis_main"
+version = "0.1.0"
+authors = ["Leo Cornelius <leocornelius019@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+jarvis_skills = { path = "../../jarvis_skills" }
+jarvis_config = { path = "../../jarvis_config" }
+simple_logger = "1.6"
+log = "0.4"
+jarvis_speech = { path = "../../jarvis_speech" }

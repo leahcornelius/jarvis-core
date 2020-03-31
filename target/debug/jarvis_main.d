@@ -1,0 +1,1 @@
+/home/lcornelius/jarvis-core/target/debug/jarvis_main: /home/lcornelius/jarvis-core/bin/jarvis_main/src/main.rs /home/lcornelius/jarvis-core/jarvis_config/src/lib.rs /home/lcornelius/jarvis-core/jarvis_skills/src/lib.rs /home/lcornelius/jarvis-core/jarvis_speech/src/lib.rs
