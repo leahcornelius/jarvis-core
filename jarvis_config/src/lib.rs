@@ -5,6 +5,7 @@ pub struct Config {
     pub home_api_key: String,
     pub screen: bool,
     pub voice_type: u8,
+    pub first_launch: bool,
 }
 
 pub fn config() -> Config {
@@ -15,5 +16,6 @@ pub fn config() -> Config {
         home_api_key: "".into(),
         screen: false,
         voice_type: 0,
+        first_launch: true,
     }
 }
