@@ -81,8 +81,8 @@ function getDarkskyWeather(day) {
 function processWeather(weather, day) {
     console.log(weather);
     console.log(day);
-    var temperatureHigh = Math.round(weather.high);
-    var temperatureLow = Math.round(weather.low)
+    var temperatureHigh = Math.round(weather.weather.high);
+    var temperatureLow = Math.round(weather.weather.low)
     //var wind_speed = weather.daily.data[0].windSpeed;
     let days = [null, 'one', 'two', 'three', 'four']
     let dayName = days[day + 1]
@@ -104,7 +104,7 @@ function processWeather(weather, day) {
     }
     document.getElementById('temp' + dayName).innerHTML = Math.round(temperatureHigh) + '&deg';
     document.getElementById('temp' + dayName + 'low').innerHTML = Math.round(temperatureLow) + '&deg';
-    var tempnow = Math.round(weather.hours[12].temp);
+    var tempnow = Math.round(weather.weather.hours[12].temp);
     //tempow = ((tempnow - 32) * 5 / 9);
     document.getElementById('tempnow').innerHTML = tempnow + '&deg';
    // darkskyWeatherToIcon(weather.daily.data[0].icon, day);
